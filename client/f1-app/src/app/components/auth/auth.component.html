@@ -1,0 +1,41 @@
+<section>
+  <div class='air air1'></div>
+  <div class='air air2'></div>
+  <div class='air air3'></div>
+  <div class='air air4'></div>
+</section>
+
+
+<div class="row justify-content-center">
+  <div class="col-lg-4 p-5  col-10 form-container">
+    <h1 class="mb-3" *ngIf="isLogin">Prijava</h1>
+    <h1 class="mb-3" *ngIf="!isLogin">Registracija</h1>
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <p>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Korisničko ime</mat-label>
+          <input matInput placeholder="ivan123" formControlName="username">
+          <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Lozinka</mat-label>
+          <input type="password" matInput placeholder="******" formControlName="password">
+          <mat-icon matSuffix>fingerprint</mat-icon>
+        </mat-form-field>
+      </p>
+
+      <small *ngIf="isLogin">Nemaš račun? Registriraj se <span (click)="isLogin = !isLogin"
+          class="registerPrompt">ovdje</span></small>
+      <small *ngIf="!isLogin">Već imaš račun? Prijavi se <span (click)="isLogin = !isLogin"
+          class="registerPrompt">ovdje</span></small>
+
+      <p *ngIf="error" class="text-danger">{{error}}</p>
+
+      <input *ngIf="isLogin" [disabled]="!form.valid" type="submit" value="Prijavi se" class="btn accent-button p-2">
+      <input *ngIf="!isLogin" [disabled]="!form.valid" type="submit" value="Registriraj se" class="btn accent-button p-2">
+
+    </form>
+  </div>
+</div>

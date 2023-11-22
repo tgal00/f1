@@ -1,0 +1,73 @@
+<div class="container">
+  <h1 class="text-center mt-5">Forum</h1>
+
+  <div class="row p-2">
+    <div class="col-md-3 p-2 border">
+      <h1 class="mb-4">Topics</h1>
+      <div class="d-flex flex-column mb-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Unesite temu</mat-label>
+          <input matInput type="text" [(ngModel)]="newTopic">
+          <button *ngIf="newTopic" matSuffix mat-icon-button (click)="newTopic=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <button *ngIf="newTopic" mat-stroked-button (click)="onNewTopic()"> Dodaj novu temu </button>
+      </div>
+      <div *ngFor="let t of topics" class="d-flex flex-row justify-content-between mb-2 align-items-center"
+        (click)="selectedTopic=t">
+        <p clasS="m-0 p-0" [ngStyle]="{'color': selectedTopic?.id === t.id ? '#cf1c00' : 'black'}"   (click)="getDiscussionForTopic(t.id)"> {{t.name}}</p>
+      </div>
+    </div>
+
+    <div class="col-md-9 p-2 border ">
+      <div *ngFor="let d of discussions" class="discussionText"
+        [ngClass]="{'justify-content-end': d.user.id == user?.id}">
+        <div class="d-flex align-items-center innerDiscussionText"
+          [ngClass]="{'align-self-end': d.user.id == user?.id}">
+          <div class="d-flex flex-column">
+
+            <small class="text-muted">{{d.user.username}} | {{d.time | date:"shortDate"}} {{d.time |
+              date:"shortTime"}}</small>
+
+            <p class="m-0 p-0" *ngIf="selectedDiscussion != d && d.user.id == user?.id">{{d.comment}}</p>
+
+            <mat-form-field appearance="outline" *ngIf="selectedDiscussion == d && d.user.id == user?.id">
+              <input matInput type="text" [(ngModel)]="d.comment">
+            </mat-form-field>
+
+            <p class="m-0 p-0" *ngIf="d.user.id != user?.id">{{d.comment}}</p>
+
+            <div *ngIf="d.user.id == user?.id" class="d-flex flex-row align-self-end">
+              <button mat-icon-button *ngIf="selectedDiscussion != d && d.user.id == user?.id"
+                (click)="onToggleEdit(d)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="selectedDiscussion == d && d.user.id == user?.id"
+                (click)="this.selectedDiscussion=null">
+                <mat-icon>close</mat-icon>
+              </button>
+              <button mat-icon-button (click)="onDeleteComment(d.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button *ngIf="selectedDiscussion == d && d.user.id == user?.id" mat-icon-button
+                (click)="onEditComment()">
+                <mat-icon>save</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedTopic" class="newComment mt-5">
+        <mat-form-field>
+          <input placeholder="Unesite svoj komentar" matInput type="text" [(ngModel)]="newComment">
+        </mat-form-field>
+        <button mat-stroked-button [disabled]="newComment.length == 0" (click)="onNewComment()">
+          Dodaj komentar <mat-icon>add_comment</mat-icon>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

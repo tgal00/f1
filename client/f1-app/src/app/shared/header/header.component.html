@@ -1,0 +1,16 @@
+<header>
+  <div class="row d-flex justify-content-center">
+    <div class="col-10 p-3 d-flex justify-items-center">
+      <div class="row w-100 align-items-center">
+        <div class="col-9">
+          <h1 routerLink="/">Formula</h1>
+        </div>
+        <div class="col-3  d-flex justify-content-end">
+          <button *ngIf="!user" routerLink="/auth" class="btn accent-button p-1"><i class="bi bi-box-arrow-in-right"></i>Prijava</button>
+          <small *ngIf="user" class="align-self-center me-3"> Pozdrav {{user.username}}</small>
+          <button *ngIf="user" (click)="onLogout()" class="btn accent-button p-1"><i class="bi bi-box-arrow-in-left"></i>Odjava</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

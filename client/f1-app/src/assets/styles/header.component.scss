@@ -1,0 +1,25 @@
+@use  'defaults' as d;
+
+header{
+  background-color:  d.$primary-color;
+  color: d.$primary-text-color;
+  height: d.$header-height;
+  box-sizing: border-box;
+
+  .accent-button {
+    border-bottom: 2px solid d.$accent-color;
+    border-radius: 10px;
+    color: d.$primary-text-color;
+    width: auto;
+    outline: none;
+    font-size: 14px;
+
+    &:hover{
+      border: 1px solid d.$accent-color;
+      border-bottom: 2px solid d.$accent-color;
+      //border-top: 1px solid d.$accent-color;
+    }
+  }
+
+}
+

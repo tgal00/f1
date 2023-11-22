@@ -1,0 +1,11 @@
+<nav [ngClass]="{'extended': isNavbarExtended, 'collapsed':!isNavbarExtended}">
+  <button mat-icon-button (click)="onSidenavToggle()" class="toggle-sidenav-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="links">
+      <p routerLink="/raspored-utrka" (click)="onSidenavToggle()"><mat-icon>schedule</mat-icon>Raspored utrka</p>
+      <p routerLink="/poredak-vozaca" (click)="onSidenavToggle()"><mat-icon> traffic</mat-icon>Poredak vozača</p>
+      <p routerLink="/poredak-konstruktora"><mat-icon>sort</mat-icon>Poredak konstruktora</p>
+      <p *ngIf="user" routerLink="/forum" (click)="onSidenavToggle()"><mat-icon>question_answer</mat-icon>Forum</p>
+  </div>
+</nav>

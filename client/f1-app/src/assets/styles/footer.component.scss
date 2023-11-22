@@ -1,0 +1,11 @@
+@use  'defaults' as d;
+
+footer{
+  position: relative;
+  height: d.$footer-height;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  background-color:  d.$primary-color;
+  color: d.$primary-text-color;
+}

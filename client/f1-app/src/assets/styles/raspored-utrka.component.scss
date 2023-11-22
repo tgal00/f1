@@ -1,0 +1,58 @@
+@use 'defaults' as d;
+
+
+.wrapper {
+  padding: 20px;
+  
+  .input-group{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 1em;
+
+    mat-form-field {
+      width: 200px;
+    }
+
+  }
+
+
+  mat-card {
+    border: 1px solid d.$accent-color;
+    border-radius: 18px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+    animation-name: loadFromBottom;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1);
+
+    @keyframes loadFromBottom {
+      from {
+        margin-top: 100vh;
+        opacity: 0;
+        border: 0px;
+      }
+
+      to {
+        margin-top: 0px;
+        opacity: 1;
+      }
+    }
+
+    &.raceIncoming {
+      border-bottom-color: rgb(255, 0, 0);
+      border-bottom-width: 4px;
+    }
+
+    &.racePassed {
+      border-bottom-color: rgb(0, 38, 255);
+      border-bottom-width: 4px;
+    }
+
+    .raceDetailButton{
+      color: blue;
+      cursor: pointer;
+    }
+  }
+
+}
